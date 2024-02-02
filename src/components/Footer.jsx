@@ -1,15 +1,13 @@
 export default function Footer() {
     return (
-        <footer className='bg-slate-800 py-8'>
-            <div className='mx-auto max-w-7xl text-center'>
-                <p className='text-slate-200'>
-                    The Game Database is provided by the{' '}
-                    <a className='text-blue-400' href='https://rawg.io/'>
-                        RAWG Video Games Database
-                    </a>{' '}
-                    API.
-                </p>
-            </div>
+        <footer className='py-6 text-center text-slate-100'>
+            <p>
+                Game database provided by the{' '}
+                <a href='https://rawg.io/' className='text-blue-400'>
+                    RAWG Video Games
+                </a>{' '}
+                Database API
+            </p>
         </footer>
     );
 }

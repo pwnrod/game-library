@@ -1,6 +1,6 @@
-# Game Library
+# Game Library Project
 
-This is a practice project for improving skills with React. This project will reinforce the basic fundamentals of React and leverage the following concepts and ideas:
+This is a practice project for creating a browsable directory of video games with React. The focus for v1 of this project is on React basics. The scope of React functionality covered in this project is:
 
 -   Components
 -   Props
