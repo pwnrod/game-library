@@ -6,11 +6,6 @@ export default function Header() {
                     <div>
                         <span className='text-slate-200'>game.library</span>
                     </div>
-                    <input
-                        className='mx-auto h-10 w-full place-self-center rounded-full bg-slate-600
-                        px-4 ring-1 ring-slate-300/10 hover:bg-slate-50 focus:bg-slate-50 focus:outline-none'
-                        placeholder='Search games'
-                    />
                 </div>
             </div>
         </header>
