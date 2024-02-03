@@ -2,7 +2,9 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Footer from './components/Footer';
 import GamesList from './components/GamesList';
+import TagsList from './components/TagsList';
 import { games } from './mock-game-data';
+import { tags } from './mock-tags-data';
 
 function App() {
     return (
@@ -18,7 +20,10 @@ function App() {
                         px-4 ring-1 ring-slate-300/10 transition-all duration-300 hover:bg-slate-50 focus:bg-slate-50 focus:outline-none'
                     placeholder='Search games'
                 />
-                <GamesList games={games} />
+                <div className='max-w-2xl pt-4'>
+                    <TagsList tags={tags.results} />
+                </div>
+                <GamesList games={games.results} />
             </section>
             <Footer />
         </div>
