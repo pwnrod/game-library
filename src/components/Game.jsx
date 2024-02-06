@@ -3,6 +3,21 @@ import PlatformBadgeList from './PlatformBadgeList';
 
 export default function Game({ game }) {
     const [isHovered, setIsHovered] = useState(false);
+    const releaseDate = new Date(game.released);
+    const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' };
+    const formattedDate = releaseDate.toLocaleString('en-US', dateOptions);
+    const genres = (
+        <ul className='flex gap-x-1'>
+            {game.genres.map((genre, index) => {
+                return (
+                    <li key={genre.id}>
+                        {genre.name}
+                        {index < game.genres.length - 1 && ', '}
+                    </li>
+                );
+            })}
+        </ul>
+    );
 
     function handleHover() {
         setIsHovered((prev) => !prev);
@@ -12,7 +27,7 @@ export default function Game({ game }) {
         <li
             onMouseEnter={handleHover}
             onMouseLeave={handleHover}
-            className='group relative scale-100 rounded-lg bg-slate-700 text-slate-100 transition-all duration-300 hover:z-50 hover:scale-105'
+            className='group scale-100 rounded-lg bg-slate-700 text-slate-100 transition-all duration-300 hover:scale-105 hover:shadow-md'
         >
             <article>
                 <img
@@ -20,29 +35,30 @@ export default function Game({ game }) {
                     alt={`${game.name} cover art`}
                     className='rounded-t-lg'
                 />
-                <div className='z-10 rounded-b-lg bg-slate-700 p-3 group-hover:absolute'>
+                <div className='rounded-b-lg bg-slate-700 p-3 transition-all duration-300 ease-in-out group-hover:shadow-md'>
                     <PlatformBadgeList platforms={game.parent_platforms} />
-                    <h2 className='text-lg font-bold leading-5'>{game.name}</h2>
-                    <p>{game.rating} / 5</p>
-                    {isHovered && (
-                        <p>
-                            Lorem ipsum dolor sit amet, officia excepteur ex
-                            fugiat reprehenderit enim labore culpa sint ad nisi
-                            Lorem pariatur mollit ex esse exercitation amet.
-                            Nisi anim cupidatat excepteur officia. Reprehenderit
-                            nostrud nostrud ipsum Lorem est aliquip amet
-                            voluptate voluptate dolor minim nulla est proident.
-                            Nostrud officia pariatur ut officia. Sit irure elit
-                            esse ea nulla sunt ex occaecat reprehenderit commodo
-                            officia dolor Lorem duis laboris cupidatat officia
-                            voluptate. Culpa proident adipisicing id nulla nisi
-                            laboris ex in Lorem sunt duis officia eiusmod.
-                            Aliqua reprehenderit commodo ex non excepteur duis
-                            sunt velit enim. Voluptate laboris sint cupidatat
-                            ullamco ut ea consectetur et est culpa et culpa
-                            duis.
-                        </p>
-                    )}
+                    <h2 className='pb-2 text-lg font-bold leading-5'>
+                        {game.name}
+                    </h2>
+                    <div>
+                        <button className='mb-4 rounded-md bg-slate-100 px-3 py-1 text-sm font-bold text-slate-700'>
+                            + Add to List
+                        </button>
+                        <div className='flex justify-between pb-2 text-sm'>
+                            <span>Rating: </span>
+                            <span>{game.rating} / 5</span>
+                        </div>
+                        <hr className='pb-2' />
+                        <div className='flex justify-between pb-2 text-sm'>
+                            <span>Release Date: </span>
+                            <span>{formattedDate}</span>
+                        </div>
+                        <hr className='pb-2' />
+                        <div className='flex justify-between text-sm'>
+                            <span>Genres: </span>
+                            <span>{genres}</span>
+                        </div>
+                    </div>
                 </div>
             </article>
         </li>
