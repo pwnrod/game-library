@@ -13,6 +13,7 @@ import SavedGamesList from './components/SavedGamesList';
 function App() {
     const [currentScreen, setCurrentScreen] = useState('search');
     const [savedGames, setSavedGames] = useLocalStorageState([], 'savedGames');
+    const [query, setQuery] = useState('');
 
     function handleToggleScreen() {
         setCurrentScreen((curScreen) => {
@@ -45,7 +46,7 @@ function App() {
                             new releases.
                         </p>
                     </Hero>
-                    <SearchGames>
+                    <SearchGames query={query} setQuery={setQuery}>
                         <GamesList
                             games={games.results}
                             onAddGame={handleAddGame}
