@@ -8,7 +8,7 @@ export default function Header({ onToggleScreen, currentScreen }) {
                     onClick={onToggleScreen}
                 >
                     {currentScreen === 'search'
-                        ? 'View My List'
+                        ? 'View Saved Games'
                         : 'Search Games'}
                 </button>
             </div>

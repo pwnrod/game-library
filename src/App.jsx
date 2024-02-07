@@ -8,11 +8,11 @@ import { useLocalStorageState } from './hooks/useLocalStorageState';
 import SearchGames from './components/SearchGames';
 import GamesList from './components/GamesList';
 import { games } from './mock-game-data';
-import MyGamesList from './components/MyGamesList';
+import SavedGamesList from './components/SavedGamesList';
 
 function App() {
     const [currentScreen, setCurrentScreen] = useState('search');
-    const [myGames, setMyGames] = useLocalStorageState([], 'myGames');
+    const [savedGames, setSavedGames] = useLocalStorageState([], 'savedGames');
 
     function handleToggleScreen() {
         setCurrentScreen((curScreen) => {
@@ -21,14 +21,12 @@ function App() {
     }
 
     function handleAddGame(game) {
-        setMyGames((myGames) => [...myGames, game]);
+        setSavedGames((myGames) => [...myGames, game]);
     }
 
-    function handleRemoveGame(game) {
-        setMyGames((myGames) =>
-            myGames.map((myGame) => {
-                return myGame.id !== game.id;
-            }),
+    function handleRemoveGame(id) {
+        setSavedGames((savedGames) =>
+            savedGames.filter((game) => game.id !== id),
         );
     }
 
@@ -40,22 +38,34 @@ function App() {
             />
             {currentScreen === 'search' && (
                 <MainScreen>
-                    <Hero />
+                    <Hero title='Game Library'>
+                        <p>
+                            Welcome to the Game Library! Explore different
+                            games, see what&apos;s popular and check out some
+                            new releases.
+                        </p>
+                    </Hero>
                     <SearchGames>
                         <GamesList
                             games={games.results}
                             onAddGame={handleAddGame}
                             onRemoveGame={handleRemoveGame}
-                            myGames={myGames}
+                            savedGames={savedGames}
                         />
                     </SearchGames>
                 </MainScreen>
             )}
             {currentScreen === 'myList' && (
                 <MyList>
-                    <MyGamesList
+                    <Hero title='Saved Games'>
+                        <p>
+                            Check out all of the games that you&apos;ve saved to
+                            your list. Manage the games below!
+                        </p>
+                    </Hero>
+                    <SavedGamesList
                         onRemoveGame={handleRemoveGame}
-                        myGames={myGames}
+                        savedGames={savedGames}
                     />
                 </MyList>
             )}

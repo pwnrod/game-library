@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PlatformBadgeList from './PlatformBadgeList';
 
-export default function MyGame({ game, onRemoveGame }) {
+export default function SavedGame({ game, onRemoveGame }) {
     const [isHovered, setIsHovered] = useState(false);
     const releaseDate = new Date(game.released);
     const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' };
@@ -42,7 +42,7 @@ export default function MyGame({ game, onRemoveGame }) {
                     </h2>
                     <div>
                         <button
-                            onClick={() => onRemoveGame(game)}
+                            onClick={() => onRemoveGame(game.id)}
                             className='mb-4 rounded-md bg-slate-100 px-3 py-1 text-sm font-bold text-slate-700'
                         >
                             - Remove from List
