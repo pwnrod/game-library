@@ -1,3 +1,3 @@
-export default function MyList() {
-    return <div>MyList</div>;
+export default function MyList({ children }) {
+    return <>{children}</>;
 }

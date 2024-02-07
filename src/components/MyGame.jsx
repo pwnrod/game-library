@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PlatformBadgeList from './PlatformBadgeList';
 
-export default function Game({ game, onAddGame, onRemoveGame, myGames }) {
+export default function MyGame({ game, onRemoveGame }) {
     const [isHovered, setIsHovered] = useState(false);
     const releaseDate = new Date(game.released);
     const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' };
@@ -18,7 +18,6 @@ export default function Game({ game, onAddGame, onRemoveGame, myGames }) {
             })}
         </ul>
     );
-    const isGameInList = myGames.some((myGame) => myGame.id === game.id);
 
     function handleHover() {
         setIsHovered((prev) => !prev);
@@ -42,21 +41,12 @@ export default function Game({ game, onAddGame, onRemoveGame, myGames }) {
                         {game.name}
                     </h2>
                     <div>
-                        {isGameInList ? (
-                            <button
-                                onClick={() => onRemoveGame(game)}
-                                className='mb-4 rounded-md bg-slate-100 px-3 py-1 text-sm font-bold text-slate-700'
-                            >
-                                - Remove from List
-                            </button>
-                        ) : (
-                            <button
-                                onClick={() => onAddGame(game)}
-                                className='mb-4 rounded-md bg-slate-100 px-3 py-1 text-sm font-bold text-slate-700'
-                            >
-                                + Add to List
-                            </button>
-                        )}
+                        <button
+                            onClick={() => onRemoveGame(game)}
+                            className='mb-4 rounded-md bg-slate-100 px-3 py-1 text-sm font-bold text-slate-700'
+                        >
+                            - Remove from List
+                        </button>
                         <div className='flex justify-between pb-2 text-sm'>
                             <span>Rating: </span>
                             <span>{game.rating} / 5</span>
